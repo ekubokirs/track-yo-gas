@@ -3,7 +3,7 @@ class CarController < ApplicationController
   before_action :navigation_type
 
   def index
-    @cars = current_user.cars
+    @cars = current_user.cars.all
   end
 
   def new
@@ -36,6 +36,7 @@ class CarController < ApplicationController
 
     if @car.errors.any?
       render :new
+      @user = current_user
       @errors="errors"
     else
       redirect_to cars_url
